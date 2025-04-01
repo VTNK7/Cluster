@@ -42,3 +42,38 @@ free -h
 
 Pour vérifier l'espace disque
 df -h
+
+
+## when vagrant/virtual box vm are configured (zscaler)
+
+## Kubernetes installation
+
+### Master & Worker
+
+#### Disable Swap
+sudo swapoff -a
+
+To disable swap, sudo swapoff -a can be used to disable swapping temporarily. To make this change persistent across reboots, make sure swap is disabled in config files like /etc/fstab, systemd.swap, depending how it was configured on your system
+
+#### Enable ipv4 packet forwarding
+
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.ipv4.ip_forward = 1
+EOF
+
+sudo sysctl --system
+
+#### Install container runtime : containerd
+
+cd /usr/local
+sudo wget https://github.com/containerd/containerd/releases/download/v2.0.0/containerd-2.0.0-linux-amd64.tar.gz
+
+sudo tar Cxzvf /usr/local containerd-2.0.0-linux-amd64.tar.gz
+
+continuer ici.
+
+sudo wget https://github.com/opencontainers/runc/releases/download/v1.2.6/runc.amd64
+sudo wget https://github.com/opencontainers/runc/releases/download/v1.2.6/runc.sha256sum
+sha256sum -c runc.sha256sum
+
+cd
