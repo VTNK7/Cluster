@@ -13,6 +13,11 @@ vagrant ssh nomvm
 
 Faire le script de paul pour le certificat ssl/tls
 
+Copier le certificat zscaler.cer et le script zscaler_setup.sh sur les machines dans home/vagrant
+
+chmod +x ./zscaler_setup.sh
+./zscaler_setup.sh
+
 ### Debian 
 sudo
 apt update
