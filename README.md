@@ -72,8 +72,87 @@ sudo tar Cxzvf /usr/local containerd-2.0.0-linux-amd64.tar.gz
 
 continuer ici.
 
+cd
+
 sudo wget https://github.com/opencontainers/runc/releases/download/v1.2.6/runc.amd64
 sudo wget https://github.com/opencontainers/runc/releases/download/v1.2.6/runc.sha256sum
 sha256sum -c runc.sha256sum
 
-cd
+sudo install -m 755 runc.amd64 /usr/local/sbin/runc
+
+sudo wget https://github.com/containernetworking/plugins/releases/download/v1.6.2/cni-plugins-linux-amd64-v1.6.2.tgz
+sudo wget https://github.com/containernetworking/plugins/releases/download/v1.6.2/cni-plugins-linux-amd64-v1.6.2.tgz.sha256
+sha256sum -c cni-plugins-linux-amd64-v1.6.2.tgz.sha256
+
+sudo mkdir -p /opt/cni/bin
+sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.6.2.tgz
+
+sudo mkdir -p /etc/containerd/
+sudo sh -c 'containerd config default > /etc/containerd/config.toml'
+
+sudo mkdir -p /usr/local/lib/systemd/system/
+sudo wget -O /usr/local/lib/systemd/system/containerd.service https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
+
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now containerd
+
+sudo systemctl status
+
+#### Install Kubeadm kubelet kubectl
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+sudo curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+sudo echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+
+sudo systemctl enable --now kubelet
+
+#### Network setup
+Rien compris
+
+#### Control plane
+
+sudo kubeadm init --apiserver-advertise-address=192.168.56.2 --pod-network-cidr=10.244.0.0/16
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+Bien attendre que ce soit running
+watch kubectl get pods --all-namespaces   
+
+(au fait j'ai mis 4 go de ram dans le doute)
+
+#### Data plane
+
+kubeadm join 192.168.56.2:6443 --token pp8qs7.25m51ud7orb8kv1u \
+        --discovery-token-ca-cert-hash sha256:449bb2fc16eceb34df778806f8e06363ad5dcb5d3a32f73d8124c03d8d5c2713 
+
+attendre que ca marche
+kubectl get pods -n kube-system
+kubectl get nodes
+
+sudo journalctl -u containerd
+sudo journalctl -u kubelet
+
+Cette config fonctionne
+
+Tester avec nginx
+kubectl create deployment nginx --image=nginx
+
+kubectl expose deployment nginx --type=NodePort --port=80
+
+kubectl get services
+
+
+#### pour arreter le cluster
+
+kubectl get all --all-namespaces -o yaml > all-resources.yaml
+kubectl delete all --all --namespace=<namespace>  # Supprimer tous les objets dans un namespace particulier
+kubectl cluster-info
