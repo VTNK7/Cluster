@@ -156,3 +156,17 @@ kubectl get services
 kubectl get all --all-namespaces -o yaml > all-resources.yaml
 kubectl delete all --all --namespace=<namespace>  # Supprimer tous les objets dans un namespace particulier
 kubectl cluster-info
+
+
+#### Pour utiliser kubectl depuis l'hôte windows
+
+scp master:/etc/kubernetes/admin.conf C:\Users\victor.marti\.kube\config
+
+# prompt
+J'ai déployé un cluster kubernetes avec kubeadm.
+Il est construit avec une node master et une node worker.
+
+Je souhaite déployer une image que j'ai construite dessus.
+L'image que je souhaite déployer est une image nginx qui affiche son adresse, son nom sur le web.
+
+Quel docker file dois je faire pour créer cette image
