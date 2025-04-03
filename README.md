@@ -181,3 +181,8 @@ PS C:\> Expand-Archive C:\Users\victor.marti\Downloads\docker-28.0.4.zip -Destin
 Finalement j'utilse debian avec wsl pour utiliser docker plus facilement
 sudo apt update
 sudo apt install -y kubectl
+
+
+wsl --install
+wsl --list --online        # Liste les distributions disponibles
+wsl --install -d Debian    # Installe une distribution spécifique
