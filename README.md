@@ -162,6 +162,8 @@ kubectl cluster-info
 
 scp master:/etc/kubernetes/admin.conf C:\Users\victor.marti\.kube\config
 
+On peut mtn utiliser kubeclt sur windows
+
 # prompt
 J'ai déployé un cluster kubernetes avec kubeadm.
 Il est construit avec une node master et une node worker.
@@ -170,3 +172,8 @@ Je souhaite déployer une image que j'ai construite dessus.
 L'image que je souhaite déployer est une image nginx qui affiche son adresse, son nom sur le web.
 
 Quel docker file dois je faire pour créer cette image
+
+
+PS C:\> Expand-Archive C:\Users\victor.marti\Downloads\docker-28.0.4.zip -DestinationPath $Env:ProgramFiles
+
+Add-LocalGroupMember -Group "docker-users" -Member "victor.marti"
