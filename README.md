@@ -176,4 +176,8 @@ Quel docker file dois je faire pour créer cette image
 
 PS C:\> Expand-Archive C:\Users\victor.marti\Downloads\docker-28.0.4.zip -DestinationPath $Env:ProgramFiles
 
-Add-LocalGroupMember -Group "docker-users" -Member "victor.marti"
+
+#### Docker wsl
+Finalement j'utilse debian avec wsl pour utiliser docker plus facilement
+sudo apt update
+sudo apt install -y kubectl
