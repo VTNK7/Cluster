@@ -221,3 +221,7 @@ A faire  :
 ajouter une bdd postgress sql 
 et un loadbalancer (ingress postgress jsp)
 bidouiller
+
+
+pour stopper les vm
+vagrant halt
