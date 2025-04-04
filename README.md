@@ -200,3 +200,24 @@ ca marche ;)
 nvm j'avais pas connecté zscaler
 
 j'installe docker
+
+
+
+lancement du cluster avec nginx : 
+
+vagrant up
+kubectl get nodes
+kubectl get pods --all-namespaces
+kubectl create deployment my-dep --image=victormarti/cluster:v1.0
+kubectl get deployments
+kubectl expose deployment my-dep --type=NodePort --port=80
+kubectl get services
+
+on a bien le container affiché avec le bon nom et la bonne ip
+kubectl get pods -o wide
+
+
+A faire  : 
+ajouter une bdd postgress sql 
+et un loadbalancer (ingress postgress jsp)
+bidouiller
