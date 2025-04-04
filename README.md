@@ -186,3 +186,5 @@ sudo apt install -y kubectl
 wsl --install
 wsl --list --online        # Liste les distributions disponibles
 wsl --install -d Debian    # Installe une distribution spécifique
+
+Cob=nnected
