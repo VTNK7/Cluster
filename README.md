@@ -186,3 +186,17 @@ sudo apt install -y kubectl
 wsl --install
 wsl --list --online        # Liste les distributions disponibles
 wsl --install -d Debian    # Installe une distribution spécifique
+
+
+Configuration wsl c'est partit.
+
+on ajouter zscaler.crt
+
+technique secrete :
+
+Sauron a permis a ma machine de se connecter a internet (zscaler était désactivé)
+J'ai donc installer openssl et update-ca-certificate, je vais mtn tenter de régler le certificat
+ca marche ;)
+nvm j'avais pas connecté zscaler
+
+j'installe docker
