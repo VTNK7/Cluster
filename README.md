@@ -225,3 +225,43 @@ bidouiller
 
 pour stopper les vm
 vagrant halt
+
+
+Nouveau déploiement :
+192.168.56.2:31331
+http://192.168.56.2:80
+10.0.2.15:31331
+
+Je fais un déploiement avec un ingress controller.
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.1/deploy/static/provider/cloud/deploy.yaml
+
+
+kubectl get pods --all-namespaces
+
+
+kubectl apply -f nginx-deployment.yaml
+
+kubectl get deployments
+kubectl get pods
+
+kubectl apply -f nginx-ingress.yaml
+
+kubectl get svc
+kubectl describe svc nginx-service
+
+kubectl apply -f nginx-service.yaml
+
+kubectl get ingress
+
+Pour tester
+Rester appuyé sur ctrl r pour spam sur edge
+C'est con mais ca marche
+
+OBjectif afficher une bdd commune entre les containre
+qui affiche le nombre de requetes a chaque container par ex.
+
+
+pour le python
+https://claude.site/artifacts/fb62b4a1-e4b9-4fe8-9d51-af778a771e4d
+
