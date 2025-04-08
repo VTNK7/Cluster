@@ -83,9 +83,9 @@ def home():
             </style>
         </head>
         <body>
-            <h1>Informations du Conteneur</h1>
-            <p><strong>Nom du conteneur:</strong> {HOSTNAME}</p>
-            <p><strong>Adresse IP:</strong> {IP_ADDRESS}</p>
+            <h1>Container info</h1>
+            <p><strong>Name :</strong> {HOSTNAME}</p>
+            <p><strong>IP adress:</strong> {IP_ADDRESS}</p>
             <p><strong>Nombre de requêtes reçues par ce conteneur:</strong> {request_count}</p>
             
             <h2>Historique des requêtes</h2>

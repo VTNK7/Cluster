@@ -265,3 +265,23 @@ qui affiche le nombre de requetes a chaque container par ex.
 pour le python
 https://claude.site/artifacts/fb62b4a1-e4b9-4fe8-9d51-af778a771e4d
 
+http://192.168.56.2:30161
+
+
+kubectl apply -f postgres.yaml
+kubectl apply -f webapp.yaml
+
+
+
+kubectl delete -f webapp.yaml  
+kubectl delete -f postgres.yaml
+
+
+kubectl get pv,pvc,pods,statefulset
+
+probleme je dois préciser un path sur le node worker qui est lié au pod postgres.
+
+sur le node worker :
+
+mkdir postgres-data
+chmod -R 777 /data/postgres-data
