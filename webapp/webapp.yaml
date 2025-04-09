@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: victormarti/cluster:flask_1.0
+        image: victormarti/cluster:flask_2.0
         ports:
         - containerPort: 5000
         env:
