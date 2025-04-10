@@ -23,6 +23,8 @@ Vagrant :
 Objectif, configurer vagrant sur wsl
 ATTENTION important, il faut que le vagrantfile soit situé sur : /mnt/c/Users/victor.marti
 /mnt/c/Users/victor.marti/Documents/Code/Project/Cluster
+donc pour lancer vagrant :
+/mnt/c/Users/victor.marti/Documents/Code/Project/Cluster$ vagrant up
 
 .vagrant.d/Vagrantfile
 Vagrant.configure("2") do |config|
