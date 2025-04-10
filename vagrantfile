@@ -21,4 +21,9 @@ Vagrant.configure("2") do |config|
       end
     end
   end
-  
+
+
+Vagrant.configure("2") do |config|
+  # IP de votre machine Windows
+  config.ssh.host = "  169.254.206.14"
+end
