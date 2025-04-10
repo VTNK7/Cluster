@@ -285,3 +285,4 @@ sur le node worker :
 
 mkdir postgres-data
 chmod -R 777 /data/postgres-data
+c
