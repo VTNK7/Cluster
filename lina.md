@@ -22,6 +22,7 @@ sudo apt-get -y install lsb-release
 Vagrant : 
 Objectif, configurer vagrant sur wsl
 ATTENTION important, il faut que le vagrantfile soit situé sur : /mnt/c/Users/victor.marti
+/mnt/c/Users/victor.marti/Documents/Code/Project/Cluster
 
 .vagrant.d/Vagrantfile
 Vagrant.configure("2") do |config|
