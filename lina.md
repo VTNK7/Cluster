@@ -20,6 +20,22 @@ lsb-release :
 sudo apt-get -y install lsb-release
 
 Vagrant : 
+
+
+Installation de plugin : 
+### Setup root certificate zscaler
+openssl x509 -inform DER -in zscaler_root.cer -out zscaler_root_ca.crt
+sudo cp zscaler_root_ca.crt /usr/local/share/ca-certificates/
+sudo update-ca-certificates
+echo "export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt" >> ~/.bashrc
+echo "export GEM_HOME=$HOME/.gem" >> ~/.bashrc
+source ~/.bashrc
+
+
+vagrant plugin install virtualbox_WSL2
+
+
+
 Objectif, configurer vagrant sur wsl
 ATTENTION important, il faut que le vagrantfile soit situé sur : /mnt/c/Users/victor.marti
 /mnt/c/Users/victor.marti/Documents/Code/Project/Cluster
@@ -32,12 +48,14 @@ Vagrant.configure("2") do |config|
   config.ssh.host = "  169.254.206.14"
 end
 
+Dans le bashrc sur WSL, il faut faire des path qui connectent le vagrant wsl au vagrant windows.
+Donc on utilise le dossier mount.
 
 .bashrc
 export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
 export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"
 export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/Users/victor.marti"
-export VAGRANT_HOME="$HOME/.vagrant.d"
+export VAGRANT_HOME="$HOME/.vagrant.d" à changer
 
 Ansible : 
 wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
